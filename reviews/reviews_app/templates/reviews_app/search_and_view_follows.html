@@ -1,3 +1,66 @@
 {% extends 'base.html' %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        console.log("script js executed")
+        $('.follow-btn').click(function () {
+            var userId = $(this).data('id');
+            $.get('/follow_user/' + userId);
+        });
+
+        $('.unfollow-btn').click(function () {
+            var userId = $(this).data('id');
+            $.get('/unfollow_user/' + userId);
+        });
+    });
+</script>
 {% block content %}
 <h1>Suivi d'autres utilisateurs</h1>
+<form method="get">
+    <input type="text" name="search" placeholder="Search users">
+    <input type="submit" value="Search">
+</form>
+
+{% if users %}
+<ul>
+    {% for user in users %}
+    <li>
+        {{ user.first_name }} {{ user.last_name }}
+        <!-- <button class="follow-btn" data-id="{{ user.id }}">Follow</button> -->
+        <a href="{% url 'follow_user' user.id %}">Follow</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No users found</p>
+{% endif %}
+
+{% if followers %}
+<h2>Abonnements</h2>
+<ul>
+    {% for follower in followers %}
+    <li>
+        {{ follower.following.last_name }}
+        <a href="{% url 'unfollow_user' follower.following.id %}">Unfollow</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if followings %}
+<h2>Abonnés</h2>
+<ul>
+    {% for following in followings %}
+    <li>
+        {{ following.follower.last_name }}
+
+        {% if following.follower.id in following_users_ids %}
+        <a href="{% url 'unfollow_user' following.follower.id %}">Unfollow</a>
+        {% else %}
+        <a href="{% url 'follow_user' following.follower.id %}">follow</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}

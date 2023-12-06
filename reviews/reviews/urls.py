@@ -54,7 +54,8 @@ urlpatterns = [
     path('photo/upload-multiple/', reviews_app.views.create_multiple_photos,
          name='create_multiple_photos'),
 
-    # path('follow/user/<int:user_id>', reviews_app.views.follow_user, name='follow_user'),
+    path('follow/user/<int:user_id>', reviews_app.views.follow_user, name='follow_user'),
+    path('unfollow/user/<int:user_id>', reviews_app.views.unfollow_user, name='unfollow_user'),
 
     path('follows/', reviews_app.views.search_and_view_follows,
          name='search_and_view_follows'),

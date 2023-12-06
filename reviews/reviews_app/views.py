@@ -4,17 +4,17 @@ from . import forms, models
 from django.shortcuts import get_object_or_404
 from django.forms import formset_factory
 from django.db.models import Q
-# from authentication.models import User
+from authentication.models import User
+
 
 @login_required
 def home(request):
     photos = models.Photo.objects.all()
-    blogs = models.Blog.objects.all()
     tickets = models.Ticket.objects.all()
     print(tickets)
     for ticket in tickets:
         print(ticket.title)
-    return render(request, 'reviews_app/home.html', context={'photos': photos, 'blogs': blogs, 'tickets': tickets})
+    return render(request, 'reviews_app/home.html', context={'photos': photos, 'tickets': tickets})
 
 
 @login_required
@@ -130,23 +130,26 @@ def create_review(request, ticket_id):
 
 @login_required
 def create_review_and_ticket(request):
-    ticket_form = forms.TicketForm()
-    review_form = forms.ReviewForm()
+    form = forms.CombinedForm()
     if request.method == 'POST':
-        ticket_form = forms.TicketForm(request.POST)
-        review_form = forms.ReviewForm(request.POST)
-        if all([ticket_form.is_valid(), review_form.is_valid()]):
-            ticket = ticket_form.save(commit=False)
+        form = forms.CombinedForm(request.POST)
+        if form.is_valid():
+            ticket = form.save(commit=False)
             ticket.author = request.user
             ticket.save()
-            review = review_form.save(commit=False)
+
+            review = models.Review()
             review.author = request.user
             review.ticket = ticket
+            review.title = form.cleaned_data['review_title']
+            review.content = form.cleaned_data['review_content']
+            review.rating = form.cleaned_data['review_rating']
             review.save()
+
             return redirect('home')
+
     context = {
-        'ticket_form': ticket_form,
-        'review_form': review_form,
+        'form': form,
     }
     return render(request, 'reviews_app/create_review_and_ticket.html', context=context)
 
@@ -175,14 +178,52 @@ def edit_review(request, review_id):
     return render(request, 'reviews_app/edit_review.html', context={'form': form, 'review': review})
 
 
+# @login_required
+# def search_and_view_follows(request):
+#     query = request.GET.get('search')
+#     all_users = User.objects.all()
+#     users = None
+#     if query:
+#         users = all_users.filter(Q(username__icontains=query) | Q(first_name__icontains=query) | Q(last_name__icontains=query))
+
+#     followers = models.Follow.objects.filter(follower=request.user)
+#     following = models.Follow.objects.filter(following=request.user)
+
+#     return render(request, 'reviews_app/search_and_view_follows.html', context={'users': users, 'followers': followers, 'following': following})
+
+
 @login_required
 def search_and_view_follows(request):
     query = request.GET.get('search')
     all_users = User.objects.all()
+    users = None
     if query:
-        all_users = all_users.filter(Q(username__icontains=query))
+        following_users = models.Follow.objects.filter(
+            follower=request.user).values_list('following', flat=True)
+        users = all_users.filter((Q(username__icontains=query) | Q(first_name__icontains=query) | Q(
+            last_name__icontains=query)) & ~Q(id__in=following_users) & ~Q(id=request.user.id))
 
     followers = models.Follow.objects.filter(follower=request.user)
-    following = models.Follow.objects.filter(following=request.user)
+    followings = models.Follow.objects.filter(following=request.user)
+    following_users_ids = list(models.Follow.objects.filter(
+        follower=request.user).values_list('following', flat=True))
+    print(following_users_ids)
 
-    return render(request, 'reviews_app/search_and_view_follows.html', context={'users': all_users, 'followers': followers, 'following': following})
+    return render(request, 'reviews_app/search_and_view_follows.html', context={'users': users, 'followers': followers, 'followings': followings, 'following_users_ids': following_users_ids})
+
+
+@login_required
+def follow_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    follow = models.Follow(follower=request.user, following=user)
+    follow.save()
+    return redirect('search_and_view_follows')
+
+
+@login_required
+def unfollow_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    follow = models.Follow.objects.filter(
+        follower=request.user, following=user)
+    follow.delete()
+    return redirect('search_and_view_follows')

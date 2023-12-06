@@ -36,14 +36,21 @@
             <h4>{{ ticket.title }}</h4>
             <p>{{ ticket.content }}</p>
 
+
             {% for review in ticket.review_set.all %}
             <div class="review">
                 <p>{{ review.author }} a écrit :</p>
                 <p>{{ review.content }}</p>
+                <p>{{ review.rating }}</p>
+                {% for star in "*****"|slice:review.rating %}
+                &#9733;
+                {% endfor %}
+
+
             </div>
             {% endfor %}
 
-            {% if not ticket.review_set.exists and ticket.author != request.user %}
+            {% if not ticket.review_set.exists or ticket.author != request.user %}
             <a href="{% url 'create_review' ticket.id %}">
                 Créer une critique
             </a>

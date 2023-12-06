@@ -22,22 +22,6 @@ class Photo(models.Model):
         self.resize_image()
 
 
-class Blog(models.Model):
-    photo = models.ForeignKey(
-        Photo, null=True, on_delete=models.SET_NULL, blank=True)
-    title = models.CharField(max_length=128)
-    content = models.CharField(max_length=5000)
-    author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    date_created = models.DateTimeField(auto_now_add=True)
-    starred = models.BooleanField(default=False)
-
-
-class Revue(models.Model):
-    title = models.CharField(max_length=128)
-    date_created = models.DateTimeField(auto_now_add=True)
-
-
 class Ticket(models.Model):
     photo = models.ForeignKey(
         Photo, null=True, on_delete=models.SET_NULL, blank=True)
@@ -66,3 +50,7 @@ class Follow(models.Model):
     following = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='following', on_delete=models.CASCADE)
 
+    # class Meta:
+    #     # ensures we don't get multiple UserFollows instances
+    #     # for unique user-user_followed pairs
+    #     unique_together = ('user', 'followed_user', )

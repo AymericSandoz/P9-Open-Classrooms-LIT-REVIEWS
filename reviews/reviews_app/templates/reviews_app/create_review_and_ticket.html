@@ -1,23 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Créer une critique</h1>
-<h2>Livre/article</h2>
 <form method="post" enctype="multipart/form-data">
-    <!-- {{ blog_form.as_p }}
-        {{ photo_form.as_p }} -->
-    {{ ticket_form.as_p }}
     {% csrf_token %}
-    <button type="submit">Publier</button>
-</form>
-<h2>Critique</h2>
-<form method="post" enctype="multipart/form-data">
-    {{ ticket_form.as_p }}
-    {% csrf_token %}
-    <button type="submit">Publier</button>
-</form>
-<form method="post" enctype="multipart/form-data">
-    {{ review_form.as_p }}
-    {% csrf_token %}
+    <h2>Livre/article</h2>
+    {{ form.title.label_tag }} {{ form.title }}
+    {{ form.content.label_tag }} {{ form.content }}
+    {{ form.photo.label_tag }} {{ form.photo }}
+    <h2>Critique</h2>
+    {{ form.review_title.label_tag }} {{ form.review_title }}
+    {{ form.review_content.label_tag }} {{ form.review_content }}
+    {{ form.review_rating.label_tag }} {{ form.review_rating }}
     <button type="submit">Publier</button>
 </form>
 {% endblock content %}
