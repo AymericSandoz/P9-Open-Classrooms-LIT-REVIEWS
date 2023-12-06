@@ -27,8 +27,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LoginView.as_view(
-            template_name='authentication/login.html',
-            redirect_authenticated_user=True),
+        template_name='authentication/login.html',
+        redirect_authenticated_user=True),
         name='login'),
     path('logout/', authentication.views.logout_user, name='logout'),
     path('signup/', authentication.views.signup_page, name='signup'),
@@ -36,14 +36,31 @@ urlpatterns = [
     path('home/', reviews_app.views.home, name='home'),
 
     path('photo/upload/', reviews_app.views.photo_upload, name='photo_upload'),
-     path('blog/create', reviews_app.views.blog_and_photo_upload, name='blog_create'),
-      path('blog/<int:blog_id>', reviews_app.views.view_blog, name='view_blog'),
-      path('blog/<int:blog_id>/edit', reviews_app.views.edit_blog, name='edit_blog'),
+    path('blog/create', reviews_app.views.blog_and_photo_upload, name='blog_create'),
+    path('blog/<int:blog_id>', reviews_app.views.view_blog, name='view_blog'),
+    path('blog/<int:blog_id>/edit', reviews_app.views.edit_blog, name='edit_blog'),
 
- path('photo/upload-multiple/', reviews_app.views.create_multiple_photos, name='create_multiple_photos'),
+    path('ticket/create', reviews_app.views.create_ticket, name='create_ticket'),
+    path('ticket/edit/<int:ticket_id>',
+         reviews_app.views.edit_ticket, name='edit_ticket'),
 
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('review/create/<int:ticket_id>',
+         reviews_app.views.create_review, name='create_review'),
+    path('review/create', reviews_app.views.create_review_and_ticket,
+         name='create_review_and_ticket'),
+    path('review/edit/<int:review_id>',
+         reviews_app.views.edit_review, name='edit_review'),
 
-# if settings.DEBUG:
-#     urlpatterns += static(
-#         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('photo/upload-multiple/', reviews_app.views.create_multiple_photos,
+         name='create_multiple_photos'),
+
+    # path('follow/user/<int:user_id>', reviews_app.views.follow_user, name='follow_user'),
+
+    path('follows/', reviews_app.views.search_and_view_follows,
+         name='search_and_view_follows'),
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # inutile j'ai limpression
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Modifier votre critique</h1>
+<h2>Vous êtes en train de poster une réponse à : </h2>
+<p>{{ ticket.author }}</p>
+<p>{{ ticket.title }}</p>
+<p>{{ ticket.content }}</p>
+    <form method="post" enctype="multipart/form-data">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Publier</button>
+    </form>
+{% endblock content %}

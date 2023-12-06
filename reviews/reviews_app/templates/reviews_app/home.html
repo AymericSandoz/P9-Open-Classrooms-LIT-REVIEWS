@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Photos</h2>
+<!-- <h2>Photos</h2>
 {% for photo in photos %}
 <img src="{{ photo.image.url }}">
 <p>{{ photo.caption }}</p>
@@ -17,5 +17,39 @@
         </a>
     </div>
     {% endfor %}
-</div>
+</div> -->
+
+<section>
+    <a href="{% url 'create_ticket' %}">
+        Demander une critique
+    </a>
+
+    <a href="{% url 'create_review_and_ticket' %}">
+        Créer une critique
+    </a>
+</section>
+<section>
+    <div class="">
+        {% for ticket in tickets %}
+        <div class="ticket">
+            <p>{{ ticket.author }} a demandé une critique</p>
+            <h4>{{ ticket.title }}</h4>
+            <p>{{ ticket.content }}</p>
+
+            {% for review in ticket.review_set.all %}
+            <div class="review">
+                <p>{{ review.author }} a écrit :</p>
+                <p>{{ review.content }}</p>
+            </div>
+            {% endfor %}
+
+            {% if not ticket.review_set.exists and ticket.author != request.user %}
+            <a href="{% url 'create_review' ticket.id %}">
+                Créer une critique
+            </a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock content %}

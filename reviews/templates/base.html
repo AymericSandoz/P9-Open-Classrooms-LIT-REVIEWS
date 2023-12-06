@@ -1,0 +1,22 @@
+{% load static %}
+<html>
+
+<head>
+    <title>FITRevue</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+</head>
+
+<body>
+    <nav>
+        <h1>FITRevue</h1>
+        <p><a href="{% url 'home' %}">Flux</a></p>
+        <p><a href="{% url 'blog_create' %}">Post</a></p>
+        <p><a href="{% url 'search_and_view_follows' %}">Abonnement</a></p>
+        {%  if user.is_authenticated %}
+        <p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
+        {% endif %}
+    </nav>
+    {% block content %}{% endblock content %}
+</body>
+
+</html>
