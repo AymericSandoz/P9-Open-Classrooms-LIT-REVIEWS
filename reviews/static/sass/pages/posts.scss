@@ -137,17 +137,6 @@
         margin-bottom: 20px;
     }
 
-    // .ticket-info {
-    //     background-color: lighten($secondary-color, 30%);
-    //     padding: 10px;
-    //     border-radius: 4px;
-    //     margin-bottom: 20px;
-
-    //     .ticket-author, .ticket-title, .ticket-content {
-    //         margin-bottom: 5px;
-    //     }
-    // }
-
     .review-form {
         .form-group {
             margin-bottom: 15px;
@@ -178,23 +167,9 @@
                 gap: 10px;
             }
         }
-
-        // .action-link {
-        //     display: inline-block;
-        //     width: auto;
-        //     padding: 10px 15px;
-        //     border: none;
-        //     border-radius: 4px;
-        //     background-color: $primary-color;
-        //     color: white;
-        //     text-decoration: none;
-        //     font-size: 16px;
-        //     cursor: pointer;
-        //     transition: background-color 0.3s;
-
-        //     &:hover {
-        //         background-color: darken($primary-color, 10%);
-        //     }
-        // }
     }
+}
+
+.review .ticket .actions {
+    display: none;
 }

@@ -182,12 +182,20 @@ def create_review_and_ticket(request):
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     form = forms.TicketForm(instance=ticket)
+    photo_form = forms.PhotoForm()
     if request.method == 'POST':
         form = forms.TicketForm(request.POST, instance=ticket)
-        if form.is_valid():
-            form.save()
+        photo_form = forms.PhotoForm(request.POST, request.FILES)
+        if all([form.is_valid(), photo_form.is_valid()]):
+            photo = photo_form.save(commit=False)
+            photo.uploader = request.user
+            photo.save()
+            ticket = form.save(commit=False)
+            ticket.author = request.user
+            ticket.photo = photo
+            ticket.save()
             return redirect('home')
-    return render(request, 'reviews_app/edit_ticket.html', context={'form': form, 'ticket': ticket})
+    return render(request, 'reviews_app/edit_ticket.html', context={'form': form, 'photo_form': photo_form, 'ticket': ticket})
 
 
 @login_required

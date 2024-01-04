@@ -15,7 +15,23 @@ python manage.py runserver
 
 aller à http://127.0.0.1:8000/
 
-Question :
+A faire :
+Wording
+Relire cahier des charges
+Pouvoir modifer sa photo dans edit ticket
+cleaning ancienne appli
+S'occuper de la gestion des erreurs
+Accessibilité
+MEttre les bon noms de varibale dans models
 
-- Photo marche pas dans creation de ticket
-- 2 fois content
+QUestions
+Dans rechercher comment faire pour rechercher uniquement dans les fichiers conçu par moi même
+FOrm et erreurs
+
+Qu'entendent t'il par(page 3)
+Un utilisateur peut suivre d'autres utilisateurs pour voir leurs critiques (ce qu’ils
+demandent et ce qu’ils postent). Il n’est pas nécessaire de créer un système
+complexe de suivi pour ce projet (flux Discover ou recherche d’utilisateurs).
+
+QUe faire pour l'accessibité
+QUestion de droit d'auteur pour une application ?

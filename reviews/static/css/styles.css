@@ -685,6 +685,10 @@ input[type=file] {
   gap: 10px;
 }
 
+.review .ticket .actions {
+  display: none;
+}
+
 .follow-user-section {
   display: flex;
   justify-content: space-between;
