@@ -2,7 +2,7 @@
     <div class="header">
         <p class="author">{% if review.author == user %} Vous avez {% else %}
             {{ review.author }} a {% endif %}
-            écrit :</p>
+            publié une critique :</p>
 
         <div class="date">
             {{ review.date_created }}
@@ -30,7 +30,7 @@
 
 
     <div class="actions">
-        <a href="{% url 'edit_review' review.id %}" class="action-link">Edit review</a>
-        <a href="{% url 'delete_review' review.id %}" class="action-link">Delete review</a>
+        <a href="{% url 'edit_review' review.id %}" class="action-link">Modifier</a>
+        <a href="{% url 'delete_review' review.id %}" class="action-link">Supprimer</a>
     </div>
 </div>

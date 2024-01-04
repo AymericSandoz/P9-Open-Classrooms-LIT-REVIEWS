@@ -5,6 +5,11 @@
             {% else %}
             {{ ticket.author }} a
             {% endif %} demandé une critique</p>
+        <p class="author-inside"> Ticket - {% if ticket.author == user %}
+            Vous
+            {% else %}
+            {{ ticket.author }}
+            {% endif %}</p>
 
         <div class="date">
             {{ ticket.date_created }}
@@ -24,8 +29,8 @@
 
     {% if ticket.author == request.user%}
     <div class="actions">
-        <a href="{% url 'edit_ticket' ticket.id %}" class="action-link">Edit ticket</a>
-        <a href="{% url 'delete_ticket' ticket.id %}" class="action-link">Delete ticket</a>
+        <a href="{% url 'edit_ticket' ticket.id %}" class="action-link">Modifier</a>
+        <a href="{% url 'delete_ticket' ticket.id %}" class="action-link">Supprimer</a>
     </div>
     {% endif %}
 </div>

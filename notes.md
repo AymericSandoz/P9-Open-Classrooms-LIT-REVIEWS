@@ -17,16 +17,18 @@ aller à http://127.0.0.1:8000/
 
 A faire :
 Wording
-Relire cahier des charges
-Pouvoir modifer sa photo dans edit ticket
 cleaning ancienne appli
 S'occuper de la gestion des erreurs
 Accessibilité
+Responsive
 MEttre les bon noms de varibale dans models
+bloquer un utilisateur.
+"Aucun fichier n'a été ajouté"
 
 QUestions
 Dans rechercher comment faire pour rechercher uniquement dans les fichiers conçu par moi même
 FOrm et erreurs
+"Aucun fichier n'a été ajouté"
 
 Qu'entendent t'il par(page 3)
 Un utilisateur peut suivre d'autres utilisateurs pour voir leurs critiques (ce qu’ils

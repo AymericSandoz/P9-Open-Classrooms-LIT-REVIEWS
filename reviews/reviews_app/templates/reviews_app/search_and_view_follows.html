@@ -20,8 +20,8 @@
 <section class="follow-user-section">
     <h1>Suivi d'autres utilisateurs</h1>
     <form method="get">
-        <input type="text" name="search" placeholder="Search users">
-        <input class="action-link" type="submit" value="Search">
+        <input type="text" name="search" placeholder="Nom d'utilisateur">
+        <input class="action-link" type="submit" value="Envoyer">
     </form>
 
     {% if users %}
@@ -30,7 +30,7 @@
         <li>
             {{ user.first_name }} {{ user.last_name }}
             <!-- <button class="follow-btn" data-id="{{ user.id }}">Follow</button> -->
-            <a class="action-link" href="{% url 'follow_user' user.id %}">Follow</a>
+            <a class="action-link" href="{% url 'follow_user' user.id %}">Suivre</a>
         </li>
     </ul>
     {% endfor %}
@@ -44,7 +44,7 @@
         {% for follower in followers %}
         <li>
             {{ follower.following.last_name }}
-            <a class="action-link" href="{% url 'unfollow_user' follower.following.id %}">Unfollow</a>
+            <a class="action-link" href="{% url 'unfollow_user' follower.following.id %}">Désabonner</a>
         </li>
         {% endfor %}
     </ul>
@@ -58,9 +58,9 @@
             {{ following.follower.last_name }}
 
             {% if following.follower.id in following_users_ids %}
-            <a class="action-link" href="{% url 'unfollow_user' following.follower.id %}">Unfollow</a>
+            <a class="action-link" href="{% url 'unfollow_user' following.follower.id %}">Désabonner</a>
             {% else %}
-            <a class="action-link" href="{% url 'follow_user' following.follower.id %}">follow</a>
+            <a class="action-link" href="{% url 'follow_user' following.follower.id %}">Suivre</a>
             {% endif %}
         </li>
         {% endfor %}

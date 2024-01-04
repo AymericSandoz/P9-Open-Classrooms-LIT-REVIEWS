@@ -34,10 +34,11 @@ class CombinedForm(forms.ModelForm):
         fields = ['title', 'content', 'photo']  # Champs de Ticket
 
     # Ajoutez les champs de Review
-    review_title = forms.CharField(max_length=128)
-    review_content = forms.CharField(max_length=8192)
+    review_title = forms.CharField(max_length=128, label="Titre")
+    review_content = forms.CharField(max_length=8192, label="Commentaire")
     review_rating = forms.ChoiceField(
         choices=[(i, str(i)) for i in range(6)],  # Crée des choix de 0 à 5
         widget=forms.RadioSelect,
-        initial=2
+        initial=2,
+        label="Note"
     )

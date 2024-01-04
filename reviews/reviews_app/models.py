@@ -24,12 +24,15 @@ class Photo(models.Model):
 
 class Ticket(models.Model):
     photo = models.ForeignKey(
-        Photo, null=True, on_delete=models.SET_NULL, blank=True)
+        Photo, null=True, on_delete=models.SET_NULL, blank=True, verbose_name="Image"
+    )
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    content = models.TextField()
-    title = models.CharField(max_length=128)
-    date_created = models.DateTimeField(auto_now_add=True)
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="auteur"
+    )
+    content = models.TextField(verbose_name="Description")
+    title = models.CharField(max_length=128, verbose_name="Titre")
+    date_created = models.DateTimeField(
+        auto_now_add=True, verbose_name="date de création")
 
     def get_class_name(self):
         return self.__class__.__name__
@@ -37,14 +40,18 @@ class Ticket(models.Model):
 
 class Review(models.Model):
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Auteur"
+    )
+    ticket = models.ForeignKey(
+        Ticket, on_delete=models.CASCADE, verbose_name="Ticket")
     rating = models.PositiveSmallIntegerField(
-        # validates that rating must be between 0 and 5
-        validators=[MinValueValidator(0), MaxValueValidator(5)], default=2)
-    title = models.CharField(max_length=128)
-    content = models.CharField(max_length=8192, blank=True)
-    date_created = models.DateTimeField(auto_now_add=True)
+        validators=[MinValueValidator(0), MaxValueValidator(5)], default=2, verbose_name="Note"
+    )
+    title = models.CharField(max_length=128, verbose_name="Titre")
+    content = models.CharField(
+        max_length=8192, blank=True, verbose_name="Commentaire")
+    date_created = models.DateTimeField(
+        auto_now_add=True, verbose_name="Date de création")
 
     def get_class_name(self):
         return self.__class__.__name__

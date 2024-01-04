@@ -525,6 +525,14 @@ input[type=file] {
   padding: 40px;
 }
 
+.ticket {
+  background-color: rgba(51, 122, 183, 0.25);
+}
+
+.review {
+  background-color: rgba(92, 184, 92, 0.25);
+}
+
 .post {
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -532,7 +540,6 @@ input[type=file] {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: rgba(92, 184, 92, 0.15);
 }
 .post .header {
   display: flex;
@@ -567,7 +574,6 @@ input[type=file] {
   align-self: flex-end;
 }
 .post .ticket {
-  background-color: rgba(51, 122, 183, 0.25);
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -589,7 +595,7 @@ input[type=file] {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: rgba(51, 122, 183, 0.25);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .create-ticket-container .form-title,
@@ -634,7 +640,7 @@ input[type=file] {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: rgba(92, 184, 92, 0.25);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .create-review-container .form-main-title,
@@ -686,6 +692,26 @@ input[type=file] {
 }
 
 .review .ticket .actions {
+  display: none;
+}
+
+.review .ticket .author-inside {
+  display: block;
+}
+
+.review .ticket .author {
+  display: none;
+}
+
+.post .author-inside {
+  display: none;
+}
+
+.create-review-container .ticket .actions {
+  display: none;
+}
+
+.create-review-container .ticket .action-link {
   display: none;
 }
 

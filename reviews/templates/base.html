@@ -13,8 +13,8 @@
             {% if user.is_authenticated %}
             <div class="nav-links">
                 <a href="{% url 'home' %}">Flux</a>
-                <a href="{% url 'view_user_posts' %}">Post</a>
-                <a href="{% url 'search_and_view_follows' %}">Abonnement</a>
+                <a href="{% url 'view_user_posts' %}">Posts</a>
+                <a href="{% url 'search_and_view_follows' %}">Abonnements</a>
             </div>
             <div class="user-info">
                 <!-- Vous êtes connecté en tant que {{ request.user }}. -->

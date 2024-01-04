@@ -3,11 +3,13 @@
 <h1>Créer une critique</h1>
 <div class="create-review-container">
     <form method="post" enctype="multipart/form-data" class="review-form">
-        <h2 class="form-title">Livre/article</h2>
-        <div class="form-group">
-            {{ form.title.label_tag }} {{ form.title }}
-            {{ form.content.label_tag }} {{ form.content }}
-            {{ photo_form.as_p }}
+        <div class="create-ticket-container">
+            <h2 class="form-title">Livre/article</h2>
+            <div class="form-group">
+                {{ form.title.label_tag }} {{ form.title }}
+                {{ form.content.label_tag }} {{ form.content }}
+                {{ photo_form.as_p }}
+            </div>
         </div>
         <h2 class="form-title">Critique</h2>
         <div class="form-group">
