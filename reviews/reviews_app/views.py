@@ -5,16 +5,27 @@ from django.shortcuts import get_object_or_404
 from django.forms import formset_factory
 from django.db.models import Q
 from authentication.models import User
+from itertools import chain
+from django.db.models import CharField, Value, BooleanField
 
 
 @login_required
 def home(request):
-    photos = models.Photo.objects.all()
+    reviews = models.Review.objects.all()
     tickets = models.Ticket.objects.all()
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.date_created,
+        reverse=True
+    )
+
     print(tickets)
     for ticket in tickets:
         print(ticket.title)
-    return render(request, 'reviews_app/home.html', context={'photos': photos, 'tickets': tickets})
+    return render(request, 'reviews_app/home.html', context={'posts': posts})
 
 
 @login_required
@@ -103,14 +114,20 @@ def create_multiple_photos(request):
 @login_required
 def create_ticket(request):
     form = forms.TicketForm()
+    photo_form = forms.PhotoForm()
     if request.method == 'POST':
         form = forms.TicketForm(request.POST)
-        if form.is_valid():
+        photo_form = forms.PhotoForm(request.POST, request.FILES)
+        if all([form.is_valid(), photo_form.is_valid()]):
+            photo = photo_form.save(commit=False)
+            photo.uploader = request.user
+            photo.save()
             ticket = form.save(commit=False)
             ticket.author = request.user
+            ticket.photo = photo
             ticket.save()
             return redirect('home')
-    return render(request, 'reviews_app/create_ticket.html', context={'form': form})
+    return render(request, 'reviews_app/create_ticket.html', context={'form': form, 'photo_form': photo_form})
 
 
 @login_required
@@ -131,11 +148,17 @@ def create_review(request, ticket_id):
 @login_required
 def create_review_and_ticket(request):
     form = forms.CombinedForm()
+    photo_form = forms.PhotoForm()
     if request.method == 'POST':
         form = forms.CombinedForm(request.POST)
-        if form.is_valid():
+        photo_form = forms.PhotoForm(request.POST, request.FILES)
+        if all([form.is_valid(), photo_form.is_valid()]):
+            photo = photo_form.save(commit=False)
+            photo.uploader = request.user
+            photo.save()
             ticket = form.save(commit=False)
             ticket.author = request.user
+            ticket.photo = photo
             ticket.save()
 
             review = models.Review()
@@ -150,6 +173,7 @@ def create_review_and_ticket(request):
 
     context = {
         'form': form,
+        'photo_form': photo_form
     }
     return render(request, 'reviews_app/create_review_and_ticket.html', context=context)
 
@@ -167,15 +191,30 @@ def edit_ticket(request, ticket_id):
 
 
 @login_required
+def delete_ticket(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    ticket.delete()
+    return redirect('view_user_posts')
+
+
+@login_required
 def edit_review(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
+    ticket = review.ticket
     form = forms.ReviewForm(instance=review)
     if request.method == 'POST':
         form = forms.ReviewForm(request.POST, instance=review)
         if form.is_valid():
             form.save()
             return redirect('home')
-    return render(request, 'reviews_app/edit_review.html', context={'form': form, 'review': review})
+    return render(request, 'reviews_app/edit_review.html', context={'form': form, 'review': review, 'ticket': ticket})
+
+
+@login_required
+def delete_review(request, review_id):
+    review = get_object_or_404(models.Review, id=review_id)
+    review.delete()
+    return redirect('view_user_posts')
 
 
 # @login_required
@@ -209,7 +248,7 @@ def search_and_view_follows(request):
         follower=request.user).values_list('following', flat=True))
     print(following_users_ids)
 
-    return render(request, 'reviews_app/search_and_view_follows.html', context={'users': users, 'followers': followers, 'followings': followings, 'following_users_ids': following_users_ids})
+    return render(request, 'reviews_app/search_and_view_follows.html', context={'users': users, 'followers': followers, 'followings': followings, 'following_users_ids': following_users_ids, 'query': query})
 
 
 @login_required
@@ -227,3 +266,18 @@ def unfollow_user(request, user_id):
         follower=request.user, following=user)
     follow.delete()
     return redirect('search_and_view_follows')
+
+
+@login_required
+def view_user_posts(request):
+    tickets = models.Ticket.objects.filter(author=request.user)
+    reviews = models.Review.objects.filter(author=request.user)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.date_created,
+        reverse=True
+    )
+    return render(request, 'reviews_app/personnal_posts.html', context={'posts': posts})

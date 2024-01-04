@@ -1,0 +1,26 @@
+.action-link,
+button,
+input[type=file]::file-selector-button {
+    display: inline-block;
+    margin: 0;
+    padding: 10px 15px;
+    background-color: $primary-color;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    border: none;
+    max-width: 200px;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+    }
+
+    &.right {
+        margin-left: auto;
+    }
+}
+
+input[type=file] {
+    width: 100%;
+}

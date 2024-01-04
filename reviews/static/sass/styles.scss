@@ -1,8 +1,25 @@
-* {
-    color: blue;
+@import "variables.scss";
+@import "normalize.scss";
+@import "./elements/buttons.scss";
+@import "./pages/connexion.scss";
+@import "./pages/inscription.scss";
+@import "./elements/header.scss";
+@import "./pages/home.scss";
+@import "./pages/posts.scss";
+@import "./pages/follow_user.scss";
 
+// * {
+//     box-sizing: border-box;
+//     margin: 0;
+//     padding: 0;
+
+
+// }
+
+body {
+    background-color: $body-background;
 }
 
-img {
-    width: 200px;
+h1 {
+    text-align: center
 }

@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Modifier votre critique</h1>
-<h2>Vous êtes en train de poster une réponse à : </h2>
-<p>{{ ticket.author }}</p>
-<p>{{ ticket.title }}</p>
-<p>{{ ticket.content }}</p>
-    <form method="post" enctype="multipart/form-data">
-        {{ form.as_p }}
+<div class="edit-review-container">
+    <h1 class="form-main-title">Modifier votre critique</h1>
+    <h2 class="form-sub-title">Vous êtes en train de poster une réponse à :</h2>
+    <div class="ticket-info">
+        {% include './snippets/ticket_snippet.html' with ticket=ticket %}
+    </div>
+    <form method="post" enctype="multipart/form-data" class="review-form">
         {% csrf_token %}
-        <button type="submit" >Publier</button>
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="action-link right">Publier</button>
     </form>
+</div>
 {% endblock content %}

@@ -1,0 +1,59 @@
+.actions-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.feed-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+}
+
+
+// .tickets-section {
+//     .ticket {
+//         border: 1px solid $secondary-color;
+//         padding: 10px;
+//         margin-bottom: 20px;
+
+//         .ticket-author,
+//         .review-author {
+//             font-weight: bold;
+//         }
+
+//         .ticket-title {
+//             color: $secondary-color;
+//         }
+
+//         .ticket-image {
+//             max-width: 100%;
+//             height: auto;
+//             margin-top: 10px;
+//         }
+
+//         .review {
+//             background-color: $background-color;
+//             padding: 5px;
+//             margin-top: 10px;
+
+//             .review-rating {
+//                 color: gold;
+//             }
+//         }
+
+//         .create-review-link {
+//             display: inline-block;
+//             margin-top: 10px;
+//             padding: 5px 10px;
+//             background-color: $link-color;
+//             color: white;
+//             text-decoration: none;
+//             border-radius: 4px;
+
+//             &:hover {
+//                 background-color: darken($link-color, 10%);
+//             }
+//         }
+//     }
+// }

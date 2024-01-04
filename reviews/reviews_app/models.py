@@ -31,6 +31,9 @@ class Ticket(models.Model):
     title = models.CharField(max_length=128)
     date_created = models.DateTimeField(auto_now_add=True)
 
+    def get_class_name(self):
+        return self.__class__.__name__
+
 
 class Review(models.Model):
     author = models.ForeignKey(
@@ -39,9 +42,12 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField(
         # validates that rating must be between 0 and 5
         validators=[MinValueValidator(0), MaxValueValidator(5)], default=2)
-    title = models.CharField(max_length=128, default="default late")
+    title = models.CharField(max_length=128)
     content = models.CharField(max_length=8192, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
+
+    def get_class_name(self):
+        return self.__class__.__name__
 
 
 class Follow(models.Model):

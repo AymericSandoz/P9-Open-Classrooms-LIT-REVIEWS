@@ -1,0 +1,200 @@
+.post {
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba($primary-color, 0.15);
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+    }
+
+    .title-rating {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .rating {
+        color: gold;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .main {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+        .content {
+            padding: 20px;
+        }
+    }
+
+    img {
+        width: 30%;
+        height: auto;
+        align-self: flex-end;
+    }
+
+    .ticket {
+        background-color: rgba($secondary-color, 0.25);
+
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .ticket .actions .action-link {
+        background-color: $secondary-color;
+    }
+}
+
+
+.create-ticket-container,
+.edit-ticket-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: $review-background-color;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .form-title {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .ticket-form {
+        .form-group {
+            margin-bottom: 15px;
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            // id_rating display flex
+
+            input[type="file"] {
+                border: none;
+            }
+        }
+    }
+}
+
+
+.create-review-container,
+.edit-review-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: $background-color;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .form-main-title,
+    .form-sub-title {
+        color: $text-color;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .form-title {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    // .ticket-info {
+    //     background-color: lighten($secondary-color, 30%);
+    //     padding: 10px;
+    //     border-radius: 4px;
+    //     margin-bottom: 20px;
+
+    //     .ticket-author, .ticket-title, .ticket-content {
+    //         margin-bottom: 5px;
+    //     }
+    // }
+
+    .review-form {
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid $border-color;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            #id_rating,
+            #id_review_rating {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+
+        // .action-link {
+        //     display: inline-block;
+        //     width: auto;
+        //     padding: 10px 15px;
+        //     border: none;
+        //     border-radius: 4px;
+        //     background-color: $primary-color;
+        //     color: white;
+        //     text-decoration: none;
+        //     font-size: 16px;
+        //     cursor: pointer;
+        //     transition: background-color 0.3s;
+
+        //     &:hover {
+        //         background-color: darken($primary-color, 10%);
+        //     }
+        // }
+    }
+}

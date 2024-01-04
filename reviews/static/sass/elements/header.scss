@@ -1,0 +1,48 @@
+.site-header {
+    background-color: $background-header;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .site-title {
+            margin: 0;
+            font-size: 24px;
+
+            a {
+                color: $primary-color;
+                text-decoration: none;
+            }
+        }
+
+        .nav-links {
+            a {
+                color: $link-color;
+                margin-right: 15px;
+                text-decoration: none;
+                transition: color 0.3s;
+
+                &:hover {
+                    color: darken($link-color, 10%);
+                }
+            }
+        }
+
+        .user-info {
+            color: $text-color;
+
+            a {
+                color: $link-color;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

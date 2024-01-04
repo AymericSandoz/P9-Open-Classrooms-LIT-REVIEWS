@@ -7,7 +7,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class PhotoForm(forms.ModelForm):
     class Meta:
         model = models.Photo
-        fields = ['image', 'caption']
+        fields = ['image']
 
 
 class TicketForm(forms.ModelForm):
@@ -22,9 +22,10 @@ class ReviewForm(forms.ModelForm):
         widget=forms.RadioSelect,
         initial=2
     )
+
     class Meta:
         model = models.Review
-        fields = ['content']
+        fields = ['content', 'rating', 'title']
 
 
 class CombinedForm(forms.ModelForm):

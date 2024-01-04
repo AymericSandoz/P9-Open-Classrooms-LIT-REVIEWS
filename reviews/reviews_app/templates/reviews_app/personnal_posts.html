@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="actions-section">
-    <a href="{% url 'create_ticket' %}" class="action-link">Demander une critique</a>
-    <a href="{% url 'create_review_and_ticket' %}" class="action-link">Créer une critique</a>
-</section>
-
+<h1>Vos posts</h1>
+{% if not posts %}
+<p>Vous n'avez pas encore posté de ticket ou de review.</p>
+{% endif %}
 <section class="feed-section">
     {% for post in posts %}
     {% if post.content_type == 'TICKET' %}

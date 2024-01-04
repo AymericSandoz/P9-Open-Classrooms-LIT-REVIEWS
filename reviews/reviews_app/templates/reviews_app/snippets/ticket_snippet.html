@@ -1,0 +1,31 @@
+<div class="ticket post">
+    <div class="header">
+        <p class="author">{% if ticket.author == user %}
+            Vous avez
+            {% else %}
+            {{ ticket.author }} a
+            {% endif %} demandé une critique</p>
+
+        <div class="date">
+            {{ ticket.date_created }}
+        </div>
+    </div>
+    <h4 class="title">{{ ticket.title }}</h4>
+    <div class="main">
+        <p class="content">{{ ticket.content }}</p>
+        {% if ticket.photo %}
+        <img src="{{ ticket.photo.image.url }}" class="image">
+        {% endif %}
+    </div>
+
+    {% if ticket.id and not ticket.review_set.exists %}
+    <a href="{% url 'create_review' ticket.id %}" class="action-link right">Créer une critique</a>
+    {% endif %}
+
+    {% if not ticket.review_set.exists and ticket.author == request.user%}
+    <div class="actions">
+        <a href="{% url 'edit_ticket' ticket.id %}" class="action-link">Edit ticket</a>
+        <a href="{% url 'delete_ticket' ticket.id %}" class="action-link">Delete ticket</a>
+    </div>
+    {% endif %}
+</div>

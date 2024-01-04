@@ -1,10 +1,15 @@
-
 {% extends 'base.html' %}
 {% block content %}
-    <form method="post">
-        {{ form.as_p }}
+<div class="login-container">
+    <h2 class="login-title">Se connecter</h2>
+    <form method="post" class="login-form">
         {% csrf_token %}
-        <button type="submit" >Se connecter</button>
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="login-button">Se connecter</button>
     </form>
-    <p>Pas encore membre ? <a href="{% url 'signup' %}">Inscrivez-vous maintenant !</a></p>
+    <p class="signup-prompt">Pas encore membre ? <a href="{% url 'signup' %}" class="signup-link">Inscrivez-vous
+            maintenant !</a></p>
+</div>
 {% endblock content %}

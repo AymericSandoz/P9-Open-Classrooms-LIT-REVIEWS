@@ -1,0 +1,34 @@
+.follow-user-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+
+    .action-link {
+        width: 200px;
+    }
+
+    input {
+        height: 40px;
+    }
+
+    ul {
+        list-style: none;
+        width: 100%;
+
+        li {
+            margin: auto;
+            border: 2px solid $secondary-color;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+
+}

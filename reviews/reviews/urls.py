@@ -43,24 +43,32 @@ urlpatterns = [
     path('ticket/create', reviews_app.views.create_ticket, name='create_ticket'),
     path('ticket/edit/<int:ticket_id>',
          reviews_app.views.edit_ticket, name='edit_ticket'),
-
+    path('ticket/delete/<int:ticket_id>',
+         reviews_app.views.delete_ticket, name='delete_ticket'),
     path('review/create/<int:ticket_id>',
          reviews_app.views.create_review, name='create_review'),
     path('review/create', reviews_app.views.create_review_and_ticket,
          name='create_review_and_ticket'),
     path('review/edit/<int:review_id>',
          reviews_app.views.edit_review, name='edit_review'),
+    path('review/delete/<int:review_id>',
+         reviews_app.views.delete_review, name='delete_review'),
 
     path('photo/upload-multiple/', reviews_app.views.create_multiple_photos,
          name='create_multiple_photos'),
 
-    path('follow/user/<int:user_id>', reviews_app.views.follow_user, name='follow_user'),
-    path('unfollow/user/<int:user_id>', reviews_app.views.unfollow_user, name='unfollow_user'),
+    path('follow/user/<int:user_id>',
+         reviews_app.views.follow_user, name='follow_user'),
+    path('unfollow/user/<int:user_id>',
+         reviews_app.views.unfollow_user, name='unfollow_user'),
 
     path('follows/', reviews_app.views.search_and_view_follows,
          name='search_and_view_follows'),
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # inutile j'ai limpression
+    path('user_posts/', reviews_app.views.view_user_posts, name='view_user_posts'),
+
+]
+# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # inutile j'ai limpression
 
 if settings.DEBUG:
     urlpatterns += static(

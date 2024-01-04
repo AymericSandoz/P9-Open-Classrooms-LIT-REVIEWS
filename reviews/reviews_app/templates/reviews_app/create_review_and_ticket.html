@@ -1,16 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Créer une critique</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <h2>Livre/article</h2>
-    {{ form.title.label_tag }} {{ form.title }}
-    {{ form.content.label_tag }} {{ form.content }}
-    {{ form.photo.label_tag }} {{ form.photo }}
-    <h2>Critique</h2>
-    {{ form.review_title.label_tag }} {{ form.review_title }}
-    {{ form.review_content.label_tag }} {{ form.review_content }}
-    {{ form.review_rating.label_tag }} {{ form.review_rating }}
-    <button type="submit">Publier</button>
-</form>
+<div class="create-review-container">
+    <form method="post" enctype="multipart/form-data" class="review-form">
+        <h2 class="form-title">Livre/article</h2>
+        <div class="form-group">
+            {{ form.title.label_tag }} {{ form.title }}
+            {{ form.content.label_tag }} {{ form.content }}
+            {{ photo_form.as_p }}
+        </div>
+        <h2 class="form-title">Critique</h2>
+        <div class="form-group">
+            {{ form.review_title.label_tag }} {{ form.review_title }}
+            {{ form.review_content.label_tag }} {{ form.review_content }}
+            {{ form.review_rating.label_tag }} {{ form.review_rating }}
+            {% csrf_token %}
+        </div>
+        <button type="submit" class="action-link right">Envoyer</button>
+    </form>
+</div>
 {% endblock content %}
