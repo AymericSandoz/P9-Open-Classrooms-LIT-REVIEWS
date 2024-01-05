@@ -16,10 +16,9 @@ python manage.py runserver
 aller à http://127.0.0.1:8000/
 
 A faire :
-Wording
-cleaning ancienne appli
 S'occuper de la gestion des erreurs
 Accessibilité
+style de la page d'acceuil
 Responsive
 MEttre les bon noms de varibale dans models
 bloquer un utilisateur.

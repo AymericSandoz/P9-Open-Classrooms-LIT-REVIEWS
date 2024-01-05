@@ -11,8 +11,22 @@ from django.db.models import CharField, Value, BooleanField
 
 @login_required
 def home(request):
-    reviews = models.Review.objects.all()
-    tickets = models.Ticket.objects.all()
+    followed_users_ids = list(models.Follow.objects.filter(
+        follower=request.user).values_list('following__id', flat=True))
+    # recup la liste des users qui m'ont bloqué
+    blocked_users_ids = list(models.Block.objects.filter(
+        blocked=request.user).values_list('blocker__id', flat=True))
+    # retirer de la liste des users que je follow ceux qui m'ont bloqué
+    for blocked_user_id in blocked_users_ids:
+        if blocked_user_id in followed_users_ids:
+            followed_users_ids.remove(blocked_user_id)
+
+    followed_users_ids.append(request.user.id)
+
+    followed_users = User.objects.filter(
+        id__in=followed_users_ids)
+    reviews = models.Review.objects.filter(author__in=followed_users)
+    tickets = models.Ticket.objects.filter(author__in=followed_users)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
 
@@ -247,16 +261,20 @@ def search_and_view_follows(request):
     if query:
         following_users = models.Follow.objects.filter(
             follower=request.user).values_list('following', flat=True)
-        users = all_users.filter((Q(username__icontains=query) | Q(first_name__icontains=query) | Q(
-            last_name__icontains=query)) & ~Q(id__in=following_users) & ~Q(id=request.user.id))
+        users = all_users.filter(Q(username__icontains=query) & ~Q(
+            id__in=following_users) & ~Q(id=request.user.id))
 
     followers = models.Follow.objects.filter(follower=request.user)
     followings = models.Follow.objects.filter(following=request.user)
     following_users_ids = list(models.Follow.objects.filter(
         follower=request.user).values_list('following', flat=True))
+
+    blocked_users_ids = list(models.Block.objects.filter(
+        blocker=request.user).values_list('blocked', flat=True))
     print(following_users_ids)
 
-    return render(request, 'reviews_app/search_and_view_follows.html', context={'users': users, 'followers': followers, 'followings': followings, 'following_users_ids': following_users_ids, 'query': query})
+    return render(request, 'reviews_app/search_and_view_follows.html', context={'users': users, 'followers': followers, 'followings': followings, 'following_users_ids': following_users_ids, 'query': query, 'blocked_users_ids': blocked_users_ids}
+                  )
 
 
 @login_required
@@ -273,6 +291,23 @@ def unfollow_user(request, user_id):
     follow = models.Follow.objects.filter(
         follower=request.user, following=user)
     follow.delete()
+    return redirect('search_and_view_follows')
+
+
+@login_required
+def block_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    block = models.Block(blocker=request.user, blocked=user)
+    block.save()
+    return redirect('search_and_view_follows')
+
+
+@login_required
+def unblock_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    block = models.Block.objects.filter(
+        blocker=request.user, blocked=user)
+    block.delete()
     return redirect('search_and_view_follows')
 
 

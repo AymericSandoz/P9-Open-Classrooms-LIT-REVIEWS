@@ -21,15 +21,18 @@
     <h1>Suivi d'autres utilisateurs</h1>
     <form method="get">
         <input type="text" name="search" placeholder="Nom d'utilisateur">
-        <input class="action-link" type="submit" value="Envoyer">
+        <input class="action-link submit-button" type="submit" value="Envoyer">
+        <button type="submit" class="submit-button-mobile">
+            <img src="../../../static/img/loupe.svg" alt="Description de l'image">
+        </button>
+
     </form>
 
     {% if users %}
     {% for user in users %}
     <ul>
         <li>
-            {{ user.first_name }} {{ user.last_name }}
-            <!-- <button class="follow-btn" data-id="{{ user.id }}">Follow</button> -->
+            {{ user.username }}
             <a class="action-link" href="{% url 'follow_user' user.id %}">Suivre</a>
         </li>
     </ul>
@@ -43,7 +46,7 @@
     <ul>
         {% for follower in followers %}
         <li>
-            {{ follower.following.last_name }}
+            {{ follower.following.username }}
             <a class="action-link" href="{% url 'unfollow_user' follower.following.id %}">Désabonner</a>
         </li>
         {% endfor %}
@@ -55,13 +58,21 @@
     <ul>
         {% for following in followings %}
         <li>
-            {{ following.follower.last_name }}
-
-            {% if following.follower.id in following_users_ids %}
-            <a class="action-link" href="{% url 'unfollow_user' following.follower.id %}">Désabonner</a>
-            {% else %}
-            <a class="action-link" href="{% url 'follow_user' following.follower.id %}">Suivre</a>
-            {% endif %}
+            {{ following.follower.username }}
+            <div>
+                {% if following.follower.id in following_users_ids %}
+                <a class="action-link" href="{% url 'unfollow_user' following.follower.id %}">Désabonner</a>
+                {% else %}
+                <a class="action-link" href="{% url 'follow_user' following.follower.id %}">Suivre</a>
+                {% endif %}
+                {% if following.follower.id in blocked_users_ids %}
+                <a class="action-link action-link-secondary"
+                    href="{% url 'unblock_user' following.follower.id %}">Débloquer</a>
+                {% else %}
+                <a class="action-link action-link-secondary"
+                    href="{% url 'block_user' following.follower.id %}">Bloquer</a>
+                {% endif %}
+            </div>
         </li>
         {% endfor %}
     </ul>

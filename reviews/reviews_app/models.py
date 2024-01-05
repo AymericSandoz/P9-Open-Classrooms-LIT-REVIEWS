@@ -29,8 +29,8 @@ class Ticket(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="auteur"
     )
-    content = models.TextField(verbose_name="Description")
-    title = models.CharField(max_length=128, verbose_name="Titre")
+    content = models.TextField(max_length=150, verbose_name="Description")
+    title = models.CharField(max_length=80, verbose_name="Titre")
     date_created = models.DateTimeField(
         auto_now_add=True, verbose_name="date de création")
 
@@ -47,9 +47,9 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)], default=2, verbose_name="Note"
     )
-    title = models.CharField(max_length=128, verbose_name="Titre")
+    title = models.CharField(max_length=80, verbose_name="Titre")
     content = models.CharField(
-        max_length=8192, blank=True, verbose_name="Commentaire")
+        max_length=150, blank=True, verbose_name="Commentaire")
     date_created = models.DateTimeField(
         auto_now_add=True, verbose_name="Date de création")
 
@@ -67,3 +67,10 @@ class Follow(models.Model):
     #     # ensures we don't get multiple UserFollows instances
     #     # for unique user-user_followed pairs
     #     unique_together = ('user', 'followed_user', )
+
+
+class Block(models.Model):
+    blocker = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='blocker', on_delete=models.CASCADE)
+    blocked = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='blocked', on_delete=models.CASCADE)

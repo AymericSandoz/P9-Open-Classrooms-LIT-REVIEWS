@@ -1,11 +1,12 @@
+{% load humanize %}
 <div class="review post">
     <div class="header">
         <p class="author">{% if review.author == user %} Vous avez {% else %}
             {{ review.author }} a {% endif %}
-            publié une critique :</p>
+            publié une critique</p>
 
         <div class="date">
-            {{ review.date_created }}
+            {{ review.date_created|naturaltime }}
         </div>
     </div>
 

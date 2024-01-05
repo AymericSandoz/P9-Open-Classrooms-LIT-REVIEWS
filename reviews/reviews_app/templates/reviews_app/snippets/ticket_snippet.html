@@ -1,3 +1,4 @@
+{% load humanize %}
 <div class="ticket post">
     <div class="header">
         <p class="author">{% if ticket.author == user %}
@@ -12,7 +13,7 @@
             {% endif %}</p>
 
         <div class="date">
-            {{ ticket.date_created }}
+            {{ ticket.date_created|naturaltime }}
         </div>
     </div>
     <h4 class="title">{{ ticket.title }}</h4>
@@ -24,7 +25,7 @@
     </div>
 
     {% if ticket.id and not ticket.review_set.exists %}
-    <a href="{% url 'create_review' ticket.id %}" class="action-link right">Créer une critique</a>
+    <a href="{% url 'create_review' ticket.id %}" class="action-link create-review-link">Créer une critique</a>
     {% endif %}
 
     {% if ticket.author == request.user%}

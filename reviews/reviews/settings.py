@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'reviews_app',
-
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

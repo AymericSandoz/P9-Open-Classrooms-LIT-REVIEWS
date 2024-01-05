@@ -1,11 +1,28 @@
 .actions-section {
     text-align: center;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+
+    a {
+        min-width: 200px;
+    }
+
+    @media screen and (max-width: $screen-sm) {
+        flex-direction: column;
+    }
 }
 
 .feed-section {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 40px;
+    padding: 0 15% 20px 15%;
+
+
+    @media screen and (max-width: $screen-md) {
+        padding: 20px;
+    }
 }

@@ -8,18 +8,23 @@
 @import "./pages/posts.scss";
 @import "./pages/follow_user.scss";
 
-// * {
-//     box-sizing: border-box;
-//     margin: 0;
-//     padding: 0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 
 
-// }
+}
 
 body {
     background-color: $body-background;
 }
 
 h1 {
-    text-align: center
+    text-align: center;
+    color: $primary-color;
+}
+
+h2 {
+    color: $secondary-color;
 }

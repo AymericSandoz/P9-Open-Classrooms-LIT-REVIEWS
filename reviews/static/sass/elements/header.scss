@@ -8,6 +8,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
 
         .site-title {
             margin: 0;
@@ -16,6 +17,10 @@
             a {
                 color: $primary-color;
                 text-decoration: none;
+            }
+
+            @media screen and (max-width: $screen-sm) {
+                order: 1;
             }
         }
 
@@ -26,9 +31,25 @@
                 text-decoration: none;
                 transition: color 0.3s;
 
+                @media screen and (max-width: $screen-sm) {
+                    border: 1px $secondary-color solid;
+                    padding: 8px;
+                    width: 33%;
+                    text-align: center;
+                }
+
                 &:hover {
                     color: darken($link-color, 10%);
                 }
+            }
+
+            @media screen and (max-width: $screen-sm) {
+                order: 3;
+                margin: 8px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
             }
         }
 
@@ -42,6 +63,10 @@
                 &:hover {
                     text-decoration: underline;
                 }
+            }
+
+            @media screen and (max-width: $screen-sm) {
+                order: 2;
             }
         }
     }

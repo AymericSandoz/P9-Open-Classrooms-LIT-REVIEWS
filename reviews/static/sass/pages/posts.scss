@@ -14,10 +14,17 @@
     flex-direction: column;
     gap: 10px;
 
+    @media screen and (max-width: $screen-md) {
+        .create-review-link {
+            margin: auto;
+        }
+    }
+
     .header {
         display: flex;
         justify-content: space-between;
         gap: 10px;
+        flex-wrap: wrap;
 
     }
 
@@ -25,11 +32,13 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        flex-wrap: wrap;
     }
 
     .title {
         font-size: 24px;
         font-weight: bold;
+        font-style: italic;
     }
 
     .rating {
@@ -38,13 +47,25 @@
         font-weight: bold;
     }
 
+    .author,
+    .author-inside {
+        font-style: italic;
+    }
+
+    .date {
+        font-style: italic;
+    }
+
     .main {
         display: flex;
         justify-content: space-between;
         gap: 10px;
 
-        .content {
-            padding: 20px;
+
+        @media screen and (max-width: $screen-md) {
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
         }
     }
 
@@ -52,6 +73,11 @@
         width: 30%;
         height: auto;
         align-self: flex-end;
+
+        @media screen and (max-width: $screen-md) {
+            width: 100%;
+            margin: auto;
+        }
     }
 
     .ticket {
@@ -90,12 +116,20 @@
     }
 
     .ticket-form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
         .form-group {
             margin-bottom: 15px;
 
             label {
                 display: block;
                 margin-bottom: 5px;
+            }
+
+            p {
+                margin-bottom: 8px;
             }
 
             input[type="text"],
@@ -140,6 +174,7 @@
     .form-title {
         color: #333;
         margin-bottom: 20px;
+        margin-top: 20px;
     }
 
     .review-form {

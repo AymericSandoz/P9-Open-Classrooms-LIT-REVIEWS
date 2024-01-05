@@ -65,6 +65,11 @@ urlpatterns = [
     path('follows/', reviews_app.views.search_and_view_follows,
          name='search_and_view_follows'),
 
+    path('block/user/<int:user_id>',
+         reviews_app.views.block_user, name='block_user'),
+    path('unblock/user/<int:user_id>',
+         reviews_app.views.unblock_user, name='unblock_user'),
+
     path('user_posts/', reviews_app.views.view_user_posts, name='view_user_posts'),
 
 ]
