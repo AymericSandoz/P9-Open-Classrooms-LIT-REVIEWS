@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: reviews\reviews_app\views.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="reviews.reviews_app.views.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               reviews\reviews_app\views.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  8
+               </span>
+               <strong>E501:</strong> line too long (83 > 79 characters)
+               
+                  (and 6 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="reviews.reviews_app.views.source.html#l58">
+                  <tt><i>58</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;reviews_app/photo_upload.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (91 > 79 characters):</p>
+               
+               <a href="reviews.reviews_app.views.source.html#l126">
+                  <tt><i>126</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;reviews_app/create_multiple_photos.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;formset&#39;</span><span class="p">:</span> <span class="n">formset</span><span class="p">})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (110 > 79 characters):</p>
+               
+               <a href="reviews.reviews_app.views.source.html#l145">
+                  <tt><i>145</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;reviews_app/create_ticket.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">,</span> <span class="s1">&#39;photo_form&#39;</span><span class="p">:</span> <span class="n">photo_form</span><span class="p">})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (102 > 79 characters):</p>
+               
+               <a href="reviews.reviews_app.views.source.html#l160">
+                  <tt><i>160</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;reviews_app/create_review.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">,</span> <span class="s1">&#39;ticket&#39;</span><span class="p">:</span> <span class="n">ticket</span><span class="p">})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="reviews.reviews_app.views.source.html#l193">
+                  <tt><i>193</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;reviews_app/create_review_and_ticket.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="reviews.reviews_app.views.source.html#l214">
+                  <tt><i>214</i>                   <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">,</span> <span class="s1">&#39;photo_form&#39;</span><span class="p">:</span> <span class="n">photo_form</span><span class="p">,</span> <span class="s1">&#39;ticket&#39;</span><span class="p">:</span> <span class="n">ticket</span><span class="p">})</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (82 > 79 characters):</p>
+               
+               <a href="reviews.reviews_app.views.source.html#l269">
+                  <tt><i>269</i>                            <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span> <span class="s1">&#39;blocked_users_ids&#39;</span><span class="p">:</span> <span class="n">blocked_users_ids</span><span class="p">}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (88 > 79 characters):</p>
+               
+               <a href="reviews.reviews_app.views.source.html#l319">
+                  <tt><i>319</i>     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;reviews_app/personnal_posts.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;posts&#39;</span><span class="p">:</span> <span class="n">posts</span><span class="p">})</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

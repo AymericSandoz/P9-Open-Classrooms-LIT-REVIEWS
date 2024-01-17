@@ -15,6 +15,14 @@ python manage.py runserver
 
 aller à http://127.0.0.1:8000/
 
+FLake 8 rapport
+pip install flake8
+flake8 --statistics --output-file=flake8_report.txt
+
+ou pour html
+pip install flake8-html
+flake8 --format=html --htmldir=flake8_report
+
 A faire :
 S'occuper de la gestion des erreurs
 Accessibilité

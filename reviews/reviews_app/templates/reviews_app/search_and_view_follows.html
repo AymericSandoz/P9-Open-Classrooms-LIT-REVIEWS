@@ -19,7 +19,9 @@
 {% block content %}
 <section class="follow-user-section">
     <h1>Suivi d'autres utilisateurs</h1>
+    <label for="search">Rechercher</label>
     <form method="get">
+        {% csrf_token %}
         <input type="text" name="search" placeholder="Nom d'utilisateur">
         <input class="action-link submit-button" type="submit" value="Envoyer">
         <button type="submit" class="submit-button-mobile">

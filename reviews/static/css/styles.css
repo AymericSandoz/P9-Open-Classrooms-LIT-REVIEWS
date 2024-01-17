@@ -344,7 +344,7 @@ input[type=file]::file-selector-button {
   margin: 0;
   padding: 10px 15px;
   background-color: #5cb85c;
-  color: white;
+  color: black;
   font-size: 1.2em;
   text-decoration: none;
   border-radius: 4px;
@@ -491,7 +491,7 @@ input[type=file] {
 }
 
 .site-header {
-  background-color: #f9f9f9;
+  background-color: #f0f0f0;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
@@ -513,8 +513,8 @@ input[type=file] {
   font-size: 1.8em;
 }
 .site-header .nav-bar .site-title a {
-  color: #5cb85c;
   text-decoration: none;
+  color: darkgreen;
 }
 @media screen and (max-width: 469px) {
   .site-header .nav-bar .site-title {
@@ -522,9 +522,14 @@ input[type=file] {
     font-size: 1.5em;
   }
 }
+.site-header .nav-bar .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
 .site-header .nav-bar .nav-links a {
   color: #337ab7;
-  margin-right: 15px;
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -532,7 +537,6 @@ input[type=file] {
   .site-header .nav-bar .nav-links a {
     border: 1px #337ab7 solid;
     padding: 8px;
-    width: 33%;
     text-align: center;
   }
 }
@@ -827,6 +831,11 @@ input[type=file] {
   flex-direction: column;
   gap: 16px;
 }
+.follow-user-section label {
+  color: #337ab7;
+  font-size: 1.5em;
+  font-weight: bold;
+}
 .follow-user-section form {
   display: flex;
   align-items: center;
@@ -877,6 +886,7 @@ input[type=file] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
 }
 @media screen and (max-width: 469px) {
@@ -897,7 +907,7 @@ body {
 
 h1 {
   text-align: center;
-  color: #5cb85c;
+  color: darkgreen;
 }
 
 h2 {

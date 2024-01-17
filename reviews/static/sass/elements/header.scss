@@ -1,5 +1,5 @@
 .site-header {
-    background-color: $background-header;
+    background-color: #f0f0f0;
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
@@ -21,8 +21,8 @@
             font-size: 1.8em;
 
             a {
-                color: $primary-color;
                 text-decoration: none;
+                color: $tertiary-color;
             }
 
             @media screen and (max-width: $screen-sm) {
@@ -32,16 +32,19 @@
         }
 
         .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+
             a {
                 color: $link-color;
-                margin-right: 15px;
                 text-decoration: none;
                 transition: color 0.3s;
 
                 @media screen and (max-width: $screen-sm) {
                     border: 1px $secondary-color solid;
                     padding: 8px;
-                    width: 33%;
                     text-align: center;
                 }
 
