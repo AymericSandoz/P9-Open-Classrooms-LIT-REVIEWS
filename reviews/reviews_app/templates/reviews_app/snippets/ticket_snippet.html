@@ -16,11 +16,11 @@
             {{ ticket.date_created|naturaltime }}
         </div>
     </div>
-    <h4 class="title">{{ ticket.title }}</h4>
+    <div class="title">{{ ticket.title }}</div>
     <div class="main">
         <p class="content">{{ ticket.content }}</p>
         {% if ticket.photo %}
-        <img src="{{ ticket.photo.image.url }}" class="image">
+        <img src="{{ ticket.photo.image.url }}" class="image" alt="{{ ticket.title }}">
         {% endif %}
     </div>
 

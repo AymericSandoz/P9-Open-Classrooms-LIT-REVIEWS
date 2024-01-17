@@ -345,11 +345,12 @@ input[type=file]::file-selector-button {
   padding: 10px 15px;
   background-color: #5cb85c;
   color: white;
+  font-size: 1.2em;
   text-decoration: none;
   border-radius: 4px;
   text-align: center;
   border: none;
-  max-width: 200px;
+  max-width: 250px;
 }
 .action-link:hover,
 button:hover,
@@ -500,10 +501,16 @@ input[type=file] {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  font-size: 1.8em;
+}
+@media screen and (max-width: 469px) {
+  .site-header .nav-bar {
+    font-size: 1.5em;
+  }
 }
 .site-header .nav-bar .site-title {
   margin: 0;
-  font-size: 24px;
+  font-size: 1.8em;
 }
 .site-header .nav-bar .site-title a {
   color: #5cb85c;
@@ -512,6 +519,7 @@ input[type=file] {
 @media screen and (max-width: 469px) {
   .site-header .nav-bar .site-title {
     order: 1;
+    font-size: 1.5em;
   }
 }
 .site-header .nav-bar .nav-links a {
@@ -822,7 +830,6 @@ input[type=file] {
 .follow-user-section form {
   display: flex;
   align-items: center;
-  gap: 16;
   width: 65%;
 }
 @media screen and (max-width: 469px) {

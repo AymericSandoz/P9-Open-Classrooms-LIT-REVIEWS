@@ -63,11 +63,6 @@ class Follow(models.Model):
     following = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name='following', on_delete=models.CASCADE)
 
-    # class Meta:
-    #     # ensures we don't get multiple UserFollows instances
-    #     # for unique user-user_followed pairs
-    #     unique_together = ('user', 'followed_user', )
-
 
 class Block(models.Model):
     blocker = models.ForeignKey(

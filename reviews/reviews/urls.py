@@ -73,7 +73,7 @@ urlpatterns = [
     path('user_posts/', reviews_app.views.view_user_posts, name='view_user_posts'),
 
 ]
-# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # inutile j'ai limpression
+
 
 if settings.DEBUG:
     urlpatterns += static(

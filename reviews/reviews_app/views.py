@@ -6,7 +6,7 @@ from django.forms import formset_factory
 from django.db.models import Q
 from authentication.models import User
 from itertools import chain
-from django.db.models import CharField, Value, BooleanField
+from django.db.models import CharField, Value
 
 
 @login_required
@@ -87,6 +87,7 @@ def view_blog(request, blog_id):
     return render(request, 'reviews_app/view_blog.html', {'blog': blog})
 
 
+@login_required
 def edit_blog(request, blog_id):
     blog = get_object_or_404(models.Blog, id=blog_id)
     edit_form = forms.BlogForm(instance=blog)
@@ -209,7 +210,8 @@ def edit_ticket(request, ticket_id):
             ticket.photo = photo
             ticket.save()
             return redirect('home')
-    return render(request, 'reviews_app/edit_ticket.html', context={'form': form, 'photo_form': photo_form, 'ticket': ticket})
+    return render(request, 'reviews_app/edit_ticket.html',
+                  context={'form': form, 'photo_form': photo_form, 'ticket': ticket})
 
 
 @login_required
@@ -229,7 +231,8 @@ def edit_review(request, review_id):
         if form.is_valid():
             form.save()
             return redirect('home')
-    return render(request, 'reviews_app/edit_review.html', context={'form': form, 'review': review, 'ticket': ticket})
+    return render(request, 'reviews_app/edit_review.html',
+                  context={'form': form, 'review': review, 'ticket': ticket})
 
 
 @login_required
@@ -237,20 +240,6 @@ def delete_review(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
     review.delete()
     return redirect('view_user_posts')
-
-
-# @login_required
-# def search_and_view_follows(request):
-#     query = request.GET.get('search')
-#     all_users = User.objects.all()
-#     users = None
-#     if query:
-#         users = all_users.filter(Q(username__icontains=query) | Q(first_name__icontains=query) | Q(last_name__icontains=query))
-
-#     followers = models.Follow.objects.filter(follower=request.user)
-#     following = models.Follow.objects.filter(following=request.user)
-
-#     return render(request, 'reviews_app/search_and_view_follows.html', context={'users': users, 'followers': followers, 'following': following})
 
 
 @login_required
@@ -273,7 +262,11 @@ def search_and_view_follows(request):
         blocker=request.user).values_list('blocked', flat=True))
     print(following_users_ids)
 
-    return render(request, 'reviews_app/search_and_view_follows.html', context={'users': users, 'followers': followers, 'followings': followings, 'following_users_ids': following_users_ids, 'query': query, 'blocked_users_ids': blocked_users_ids}
+    return render(request, 'reviews_app/search_and_view_follows.html',
+                  context={'users': users, 'followers': followers,
+                           'followings': followings,
+                           'following_users_ids': following_users_ids,
+                           'query': query, 'blocked_users_ids': blocked_users_ids}
                   )
 
 

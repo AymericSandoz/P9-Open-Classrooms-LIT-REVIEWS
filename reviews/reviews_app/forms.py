@@ -1,7 +1,6 @@
 from django import forms
 
 from . import models
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class PhotoForm(forms.ModelForm):

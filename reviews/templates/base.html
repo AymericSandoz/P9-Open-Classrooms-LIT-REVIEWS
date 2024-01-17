@@ -1,8 +1,13 @@
 {% load static %}
+<!DOCTYPE html>
 <html>
 
 <head>
     <title>FITRevue</title>
+
+    <html lang="fr">
+    <meta name="description" content="FITRevue est un site de critique de films et de séries.">
+    <meta name="keywords" content="critique, film, série, critique de film, critique de série">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
@@ -18,7 +23,6 @@
                 <a href="{% url 'search_and_view_follows' %}">Abonnements</a>
             </div>
             <div class="user-info">
-                <!-- Vous êtes connecté en tant que {{ request.user }}. -->
                 <a href="{% url 'logout' %}">Se déconnecter</a>
             </div>
             {% endif %}
